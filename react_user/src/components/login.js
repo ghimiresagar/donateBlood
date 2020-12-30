@@ -26,16 +26,6 @@ const Login = props => {
         setUser({ ...user, [e.target.name]: e.target.value });
     }
 
-    // useEffect(() => {
-    //     fetch('/')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log(data)
-    //             setMessage(data.message);
-    //         })
-    //         .catch(err => { console.log(err); setMessage(err) });
-    // }, []);
-
     const handleSubmit = (event) => {
         event.preventDefault();
 

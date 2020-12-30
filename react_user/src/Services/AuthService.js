@@ -7,15 +7,8 @@ export default {
                 'Content-Type': 'application/json'
             }
         }).then(res => {
-            if (res.status !== 401)
-            // user registered, gets isAuthenticated, username, message
-                return res.json().then(data => data);
-            else {
-                return {
-                // user not registered
-                    isAuthenticated: false, user: {username: ""}, message: {msgBody: "Email is already in use.", msgError: true}
-                }
-            }
+            // send the response to the front end and display the message
+            return res.json().then(data => data);
         })
     },
     login: user => {

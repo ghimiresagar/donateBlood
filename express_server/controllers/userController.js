@@ -26,23 +26,42 @@ exports.registration = function (req, res) {
     const userDetails = {
         username: req.body.username,
         password: req.body.password,
-        blood_type: req.body.blood_type
+        blood_type: req.body.blood_type, 
+        location: req.body.location,
+        phone_number: req.body.phone_number
     }
-    // check if the email for the user already exists in the db
-    User.countDocuments({"username": userDetails.username}, function(err, count) {
-        // if an email is not found, we will add the email to the db
-        if (count === 0) {
-            // console.log(userDetails);
-            // add a user
-            const newUser = new User(userDetails);
-            newUser.save();
-            // send a success response back
-            res.status(200).json({ isAuthenticated: true, user: userDetails.username, message:{msgBody: "User successfully registered!", msgError: false}});
-        } else {
-            // email exists, send unauthorized response
-            res.status(401).json({ isAuthenticated: false, user: "", message:{msgBody: "Error while registration!", msgError: true} });
-        }
-    })
+    // check to make sure email is in correct format
+    if (userDetails.username.includes("@") && userDetails.username.includes(".")) {
+        // check if the email for the user already exists in the db
+        User.countDocuments({"username": userDetails.username}, function(err, count) {
+            // email is not found
+            if (count === 0) {
+                // add the user to the db
+                const newUser = new User(userDetails);
+                newUser.save();
+                // send a success response back
+                res.status(200).json({ 
+                    isAuthenticated: true, 
+                    user: userDetails.username, 
+                    message:{msgBody: "REGISTERED!!!!", msgError: false}
+                });
+            } else {
+                // email exists, send unauthorized response
+                res.status(401).json({ 
+                    isAuthenticated: false, 
+                    user: "", 
+                    message:{msgBody: "Email is already in use.", msgError: true} 
+                });
+            }
+        });
+    } else {
+        // invalid email format, it shouldn't happen from the front end as email is verified there too
+        res.status(401).json({
+            isAuthenticated: false, 
+            user: "",
+            message:{msgBody: "Invalid email format used.", msgError: true}
+        });
+    }
 }
 
 exports.authenticate = function (req, res) {

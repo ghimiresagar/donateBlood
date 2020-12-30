@@ -4,7 +4,9 @@ const Schema = mongoose.Schema;
 UserSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  blood_type: { type: String, required: true }
+  blood_type: { type: String, required: true },
+  location: { type: String, required: true },
+  phone_number: { type: String, required: true}
 });
 
 // consider server error too
