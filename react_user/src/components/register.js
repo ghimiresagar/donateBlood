@@ -14,7 +14,7 @@ import Button from 'react-bootstrap/Button';
 const Register = props => {
     const [validated, setValidated] = useState(false);
     const [user, setUser] = useState({
-        // bloodType: "",
+        blood_type: "A+",
         username: "",
         password: ""
     });
@@ -52,11 +52,13 @@ const Register = props => {
         }
     }
 
-    // const bloodTypeOptions = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+    const bloodTypeOptions = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+
+    console.log(user)
 
     return (
         <Container>
-            <Header value="Web App Framework" />
+            <Header value="Donate Blood" />
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Form.Row>
                     <Form.Group as={Col} md="4">
@@ -65,7 +67,7 @@ const Register = props => {
                     <Form.Group as={Col} md="4" className="m-1 p-3">
                         <h2 className="text-center">Register</h2> 
                         <hr/> <br />
-                        {/* <Form.Row>
+                        <Form.Row>
                             <Form.Group as={Col} md="12" controlId="validationCustomBloodType">
                                 <Form.Label>Blood Type:</Form.Label>
                                 <InputGroup>
@@ -78,14 +80,14 @@ const Register = props => {
                                         onChange={onChange}
                                         style={{"cursor":"pointer"}}
                                     >
-                                    { bloodTypeOptions.map(element => <option>{element}</option>) }
+                                    { bloodTypeOptions.map(element => <option key={element}>{element}</option>) }
                                     </Form.Control>
                                     <Form.Control.Feedback type="invalid">
                                         Please enter your Blood Type.
                                     </Form.Control.Feedback>
                                 </InputGroup>
                             </Form.Group>
-                        </Form.Row> */}
+                        </Form.Row>
                         <Form.Row>
                             <Form.Group as={Col} md="12" controlId="validationCustomEmail">
                                 <Form.Label>Email:</Form.Label>

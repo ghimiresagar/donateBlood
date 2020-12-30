@@ -16,9 +16,9 @@ function App() {
     return (
       <Router>
         <Switch>
-          <UnPrivateRoute exact path='/' component={Login} />
+          <UnPrivateRoute exact path='/login' component={Login} />
           <UnPrivateRoute exact path='/register' component={Register} />
-          <PrivateRoute exact path='/dashboard' component={Dashboard}/>
+          <Route exact path='/' component={Dashboard}/>
           {/* <PrivateRoute exact path='/admin/surveys/senior/edit' name="Senior" component={SurveyLayoutEdit} /> */}
           {/* <Route exact path='/admin/surveys/senior/url/:id' render={(props) => <SurveyView {...props} name="Senior"/> } /> */}
           <Route path='/'>

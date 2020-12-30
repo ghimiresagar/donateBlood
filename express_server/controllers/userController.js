@@ -25,7 +25,8 @@ exports.registration = function (req, res) {
     // get the request as user details
     const userDetails = {
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        blood_type: req.body.blood_type
     }
     // check if the email for the user already exists in the db
     User.countDocuments({"username": userDetails.username}, function(err, count) {
@@ -62,4 +63,14 @@ exports.logout = function(req, res) {
 exports.authenticated = function (req, res) {
     const { username } = req.user;
     res.status(200).json({ isAuthenticated: true, user: {username} });
+}
+
+//--------------------- Dashboard ----------------------------
+// get the users to display in the dashboard
+exports.get_users_dashboard = function (req, res) {
+    User.find().limit(25)
+    .then(data => {
+        res.json(data);
+    })
+    .catch(err => console.log(err));
 }

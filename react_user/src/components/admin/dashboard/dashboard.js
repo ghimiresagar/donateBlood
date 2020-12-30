@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../../header';
+import DashboardLayout from './dashboardLayout';
 
 import Container from 'react-bootstrap/Container';
 
@@ -12,7 +13,8 @@ import Container from 'react-bootstrap/Container';
 function Dashboard() {
     return (
         <Container>
-            <Header value="Dashboard" />
+            <Header value="Donate Blood" />
+            <DashboardLayout />
         </Container>
     );
 }

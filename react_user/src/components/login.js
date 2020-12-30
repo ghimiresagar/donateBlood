@@ -52,7 +52,7 @@ const Login = props => {
             if (isAuthenticated) {
                 authContext.setUser(user);
                 authContext.setIsAuthenticated(isAuthenticated);
-                window.location.href += '/dashboard';
+                window.location.href += '/';
             } else {
                 setMessage(message);
             }
@@ -61,7 +61,7 @@ const Login = props => {
   
     return (
         <Container>
-          <Header value="Web App Framework" />
+          <Header value="Donate Blood" />
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Row>
                 <Form.Group as={Col} md="4">
