@@ -85,11 +85,31 @@ exports.authenticated = function (req, res) {
 }
 
 //--------------------- Dashboard ----------------------------
-// get the users to display in the dashboard
+// get the users to display in the dashboard with out any filter
 exports.get_users_dashboard = function (req, res) {
     User.find().limit(25)
     .then(data => {
         res.json(data);
     })
     .catch(err => console.log(err));
+}
+
+// get the users to display in the dashboard with filter applies
+exports.get_users_dashboard_filtered = function (req, res) {
+    // take the passed data from the front end
+    const searchType = req.body.type;
+    const searchValue = req.body.value;
+    // check to make sure we have the correct type of search
+    if (searchType !== null && searchValue !== null) {
+        // find the users using a regex search
+        User.find({
+            [searchType]: {'$regex': new RegExp(searchValue, "i")}
+        }).limit(25)
+        .then(data => {
+            res.json(data);
+        })
+        .catch(err => console.log(err));
+    } else {
+        console.log("Values for search passed in as null.");
+    }
 }

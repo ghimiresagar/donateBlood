@@ -24,5 +24,7 @@ router.get('/authenticated', passport.authenticate('jwt', {session: false}), use
 
 // get the users to display for dashboard, don't need no authentication for this
 router.get('/donation', user_controller.get_users_dashboard);
+// get the users (filtered) for the dashboard
+router.post('/donation/filtered', user_controller.get_users_dashboard_filtered);
 
 module.exports = router;

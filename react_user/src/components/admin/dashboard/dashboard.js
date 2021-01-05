@@ -13,7 +13,7 @@ import Container from 'react-bootstrap/Container';
 function Dashboard() {
     return (
         <Container>
-            <Header value="Donate Blood" />
+            <Header value="Blood Donor Finder" />
             <DashboardLayout />
         </Container>
     );

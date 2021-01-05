@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import AuthService from '../Services/AuthService';
 import { Nav, Navbar } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 const Header = props => {
     const { setUser, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
@@ -10,8 +11,7 @@ const Header = props => {
     const authNavBar = () => {
         return (
             <Nav className="bg-light">
-                {/* <Nav.Link href="/admin/surveys/senior/edit" className="m-2 bg-light">Senior Survey</Nav.Link> */}
-                <Nav.Link onClick={onClickLogout} className="m-2 bg-light">Logout</Nav.Link>
+                <Button variant="light" onClick={onClickLogout} className="m-2">Logout</Button>
             </Nav>
         )
     }
@@ -19,8 +19,8 @@ const Header = props => {
     const nauthNavBar = () => {
         return (
             <Nav className="bg-light">
-                <Nav.Link href="/login" className="m-2 bg-light">Login</Nav.Link>
-                <Nav.Link href="/register" className="m-2 bg-light">Register</Nav.Link>
+                <Button variant="light" href="/login" className="m-2">Login</Button>
+                <Button variant="light" href="/register" className="m-2">Register</Button>
             </Nav>
         )
     }

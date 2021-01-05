@@ -6,7 +6,7 @@ UserSchema = new Schema({
   password: { type: String, required: true },
   blood_type: { type: String, required: true },
   location: { type: String, required: true },
-  phone_number: { type: String, required: true}
+  phone_number: { type: Number, required: true}
 });
 
 // consider server error too

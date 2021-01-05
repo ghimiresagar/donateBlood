@@ -10,6 +10,8 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
+import Popover from 'react-bootstrap/Popover';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 const Register = props => {
     const [validated, setValidated] = useState(false);
@@ -21,6 +23,8 @@ const Register = props => {
         phone_number: ""
     });
     const [message, setMessage] = useState(null);
+    // array to keep blood types
+    const bloodTypeOptions = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
     // if user types something, store them into corresponding values
     const onChange = e => {
@@ -62,11 +66,19 @@ const Register = props => {
         }
     }
 
-    const bloodTypeOptions = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+    // popover function
+    const popoverLocationInfo = (
+        <Popover id="popover-basic">
+          <Popover.Title as="h3">Why do I have to type in my location?</Popover.Title>
+          <Popover.Content>
+                We <strong>don't</strong> want to expose our user's location to anyone in the internet. For this reason, please <strong>use the location of the nearest hospital</strong>.
+          </Popover.Content>
+        </Popover>
+    );
 
     return (
         <Container>
-            <Header value="Donate Blood" />
+            <Header value="Blood Donor Finder" />
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Form.Row>
                     <Form.Group as={Col} md="4">
@@ -94,25 +106,38 @@ const Register = props => {
                                         Please enter your Blood Type.
                                     </Form.Control.Feedback>
                                 </InputGroup>
-                                <Form.Label>Location:</Form.Label>
+                            </Form.Group>
+                        </Form.Row>
+                        <Form.Row>
+                            <Form.Group as={Col} md="12" controlId="validationCustomLocation">
+                            <Form.Label>Location:</Form.Label>
                                 <InputGroup>
-                                    <Form.Control
-                                        type="text"
-                                        name="location"
-                                        placeholder="Location"
-                                        aria-describedby="inputGroupPrepend"
-                                        required
-                                        onChange={onChange}
-                                    >
-                                    </Form.Control>
+                                    <OverlayTrigger
+                                        delay={{ show: 250, hide: 300 }} 
+                                        placement="right" 
+                                        overlay={popoverLocationInfo}>
+                                        <Form.Control
+                                            type="text"
+                                            name="location"
+                                            placeholder="Location"
+                                            aria-describedby="inputGroupPrepend"
+                                            required
+                                            onChange={onChange}
+                                        >
+                                        </Form.Control>
+                                    </OverlayTrigger> 
                                     <Form.Control.Feedback type="invalid">
-                                        Please enter your home town.
+                                        Please enter the location of your nearest hospital.
                                     </Form.Control.Feedback>
                                 </InputGroup>
-                                <Form.Label>Phone Number:</Form.Label>
+                            </Form.Group>
+                        </Form.Row>
+                        <Form.Row>
+                            <Form.Group as={Col} md="12" controlId="validationCustomPhoneNumber">
+                            <Form.Label>Phone Number:</Form.Label>
                                 <InputGroup>
                                     <Form.Control
-                                        type="text"
+                                        type="number"
                                         name="phone_number"
                                         placeholder="Phone Number"
                                         aria-describedby="inputGroupPrepend"
@@ -139,7 +164,7 @@ const Register = props => {
                                         onChange={onChange}
                                     />
                                     <Form.Control.Feedback type="invalid">
-                                        Please enter an Email.
+                                        Please enter an email address.
                                     </Form.Control.Feedback>
                                 </InputGroup>
                             </Form.Group>

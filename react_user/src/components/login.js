@@ -51,7 +51,7 @@ const Login = props => {
   
     return (
         <Container>
-          <Header value="Donate Blood" />
+          <Header value="Blood Donor Finder" />
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Row>
                 <Form.Group as={Col} md="4">
