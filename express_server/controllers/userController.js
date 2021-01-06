@@ -113,3 +113,26 @@ exports.get_users_dashboard_filtered = function (req, res) {
         console.log("Values for search passed in as null.");
     }
 }
+
+//--------------------- Profile ----------------------------
+// get user information
+exports.post_user_information = function (req, res) {
+    // take the passed email information from the front end
+    const email = req.body.email;
+    if (email) {
+        // find the user with the provided username
+        User.find({
+            username: [email]
+        }, {
+            password: 0
+        }).limit(1)
+        .then(data => {
+            // find returns an array of objects, return only the first element
+            let result = data[0];
+            res.json(result);
+        })
+        .catch(err => console.log(err));
+    } else {
+        console.log("Empty username passed.");
+    }
+}

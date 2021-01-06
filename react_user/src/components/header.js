@@ -11,6 +11,8 @@ const Header = props => {
     const authNavBar = () => {
         return (
             <Nav className="bg-light">
+                <Button variant="light" href="/" className="m-2">Dashboard</Button>
+                <Button variant="light" href="/profile" className="m-2">Profile</Button>
                 <Button variant="light" onClick={onClickLogout} className="m-2">Logout</Button>
             </Nav>
         )

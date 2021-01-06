@@ -27,4 +27,8 @@ router.get('/donation', user_controller.get_users_dashboard);
 // get the users (filtered) for the dashboard
 router.post('/donation/filtered', user_controller.get_users_dashboard_filtered);
 
+// routes for user profile
+// get the user profile information
+router.post('/donation/profile', passport.authenticate('jwt', {session: false}), user_controller.post_user_information);
+
 module.exports = router;
