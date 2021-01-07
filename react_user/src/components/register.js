@@ -71,7 +71,7 @@ const Register = props => {
         <Popover id="popover-basic">
           <Popover.Title as="h3">Why do I have to type in my location?</Popover.Title>
           <Popover.Content>
-                We <strong>don't</strong> want to expose our user's location to anyone in the internet. For this reason, please <strong>use the location of the nearest hospital</strong>.
+              Please <strong>don't</strong> disclose your home location. Try to be specific but general enough so people can't stalk you! <strong>Include</strong> your city so people can better find you.
           </Popover.Content>
         </Popover>
     );
@@ -85,7 +85,7 @@ const Register = props => {
                     </Form.Group>
 
                     <Form.Group as={Col} md="4" className="m-1 p-3">
-                        <h2 className="text-center">Register</h2> 
+                        <h2 className="text-center">Register and Become a donor!</h2> 
                         <hr/> <br />
                         <Form.Row>
                             <Form.Group as={Col} md="12" controlId="validationCustomBloodType">
@@ -119,7 +119,7 @@ const Register = props => {
                                         <Form.Control
                                             type="text"
                                             name="location"
-                                            placeholder="Location"
+                                            placeholder="Near Pashupatinath Temple, Kathmandu"
                                             aria-describedby="inputGroupPrepend"
                                             required
                                             onChange={onChange}

@@ -87,7 +87,8 @@ exports.authenticated = function (req, res) {
 //--------------------- Dashboard ----------------------------
 // get the users to display in the dashboard with out any filter
 exports.get_users_dashboard = function (req, res) {
-    User.find().limit(25)
+    // get the top records and sort based on creation time
+    User.find().limit(25).sort({_id:-1})
     .then(data => {
         res.json(data);
     })
@@ -135,4 +136,43 @@ exports.post_user_information = function (req, res) {
     } else {
         console.log("Empty username passed.");
     }
+}
+// update user information
+exports.post_update_user_information = function (req, res) {
+    // take the passed user information from the front end
+    const user = {
+        username: req.body.username,
+        blood_type: req.body.blood_type,
+        location: req.body.location,
+        phone_number: req.body.phone_number
+    }
+    let nullValue = false;
+    // make sure the obj properties are not empty or null
+    for( const [x, y] of Object.entries(user) ) {
+        if (y == "") {
+            // set null value to true
+            nullValue = true;
+            break;
+        }
+    }
+    // check if null/empty value existed
+    if (!nullValue) {
+        // find and update the user details
+        User.findOneAndUpdate({ username: user.username }, {
+            blood_type: user.blood_type,
+            location: user.location,
+            phone_number: user.phone_number
+        }, {projection: {password: 0, _id: 0}})
+        .then(updated => {
+            res.status(200).json({
+                message:{msgBody: "Information successfully updated!", msgError: false}
+            });
+        })
+        .catch(err => console.log(err));
+    } else {
+        res.status(200).json({
+            message:{msgBody: "Something went wrong! Missing information!", msgError: true}
+        });
+    }
+
 }

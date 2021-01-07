@@ -9,7 +9,7 @@ import Container from 'react-bootstrap/Container';
 
 const DashboardLayout = props => {
     // check to determine is blood is selected or location for search
-    const [bloodSelected, setBloodSelected] = useState(true);
+    const [bloodSelected, setBloodSelected] = useState(false);
     // body of the search
     const [search, setSearch] = useState({
         type: "blood_type",

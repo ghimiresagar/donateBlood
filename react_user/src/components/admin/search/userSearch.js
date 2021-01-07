@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 
 function UserSearch(props) {
     // blood types for options
-    const bloodTypeOptions = ["", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+    const bloodTypeOptions = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
     return (
         <Form>
@@ -21,8 +21,8 @@ function UserSearch(props) {
                         defaultValue= 'Blood Type' 
                         onChange={props.onChangeHandleType}
                         style={{"cursor": "pointer"}}>
-                        <option value="blood_type">Blood Type</option>
                         <option value="location">Location</option>
+                        <option value="blood_type">Blood Type</option>
                     </Form.Control>
                 </Form.Group>
                 <Form.Group as={Col}>
@@ -32,7 +32,7 @@ function UserSearch(props) {
                             as="select"
                             name="value"
                             required
-                            defaultValue=""
+                            defaultValue="A+"
                             onChange={props.onChangeHandle}
                             style={{"cursor": "pointer"}}>
                             { bloodTypeOptions.map(element => <option key={element}>{element}</option>) }
