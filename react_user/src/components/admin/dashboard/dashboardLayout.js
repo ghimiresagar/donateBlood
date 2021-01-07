@@ -89,8 +89,6 @@ const DashboardLayout = props => {
             setChange(change+1);
     }
 
-    console.log(search)
-    console.log(detailBody)
     return(
         <Container>
             <UserSearch onChangeHandleType={onChangeHandleType} onChangeHandle={onChangeHandle} bloodSelected={bloodSelected} />
