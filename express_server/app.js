@@ -18,7 +18,7 @@ const port = 5000;
 var mongoose = require('mongoose');
 
 // database name
-var mongoDB = 'mongodb+srv://sagardb:Somerville11@cluster0.z8jim.mongodb.net/donate_blood?retryWrites=true&w=majority';
+var mongoDB = 'mongodb+srv://sagardb:<password>@cluster0.z8jim.mongodb.net/donate_blood?retryWrites=true&w=majority';
 // for local connection
 // var mongoDB = "mongodb://127.0.0.1:27017/cs_survey";
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
